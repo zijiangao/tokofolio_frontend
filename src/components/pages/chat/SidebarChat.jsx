@@ -1,9 +1,8 @@
 import React from "react";
 import TokoService from "../../../services/api";
-import { Avatar, IconButton } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
 import "./SidebarChat.scss";
 import { withCookies } from "react-cookie";
-import { Link } from "react-router-dom";
 const jwt = require("jsonwebtoken");
 
 class SidebarChat extends React.Component {

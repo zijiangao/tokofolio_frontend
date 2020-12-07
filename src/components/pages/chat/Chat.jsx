@@ -1,13 +1,10 @@
-import {
-  AttachFile,
-  InsertEmoticon,
-  Message,
-  MessageSharp,
-  MoreVert,
-  SearchOutlined,
-} from "@material-ui/icons";
+import AttachFile from "@material-ui/icons/AttachFile";
+import InsertEmoticon from "@material-ui/icons/InsertEmoticon";
+import MoreVert from "@material-ui/icons/MoreVert";
+import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import TokoService from "../../../services/api";
-import { Avatar, IconButton } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
 import MicIcon from "@material-ui/icons/Mic";
 import React from "react";
 import "./Chat.scss";
