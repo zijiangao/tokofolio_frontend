@@ -38,7 +38,7 @@ function Register(props) {
       //     timeout: 5000, // 5000ms = 5s
       //   });
       axios
-        .post("http://localhost:5000/users/register", {
+        .post("https://cryptic-sands-87652.herokuapp.com/users/register", {
           email,
           password,
           first_name: firstName,
