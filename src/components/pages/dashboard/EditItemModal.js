@@ -6,16 +6,19 @@ function EditItemModal({ show, handleClose, item, index, cookies }) {
   let [inputs, setInputs] = useState(item);
   function handleSave() {
     let token = cookies.get("token");
-    fetch(`http://localhost:5000/user/portfolio?token=${token}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify({
-        index: index,
-        ...inputs,
-      }),
-    })
+    fetch(
+      `https://cryptic-sands-87652.herokuapp.com/user/portfolio?token=${token}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({
+          index: index,
+          ...inputs,
+        }),
+      }
+    )
       .then((data) => data.json())
       .then((data) => {
         if (data !== null) {
