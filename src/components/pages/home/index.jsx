@@ -1,9 +1,8 @@
-import React, { useState, } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import Modal from "./Modal";
 import Ticker from "../../Ticker";
 import Navibar from "../../Navibar";
-
 
 export default function Home() {
   const [result, setResult] = useState(null);
@@ -15,7 +14,9 @@ export default function Home() {
     setLoading(true);
     setResult(null);
 
-    fetch(`http://localhost:5000/coin-portfolio-data?search=${search}`)
+    fetch(
+      `https://cryptic-sands-87652.herokuapp.com/coin-portfolio-data?search=${search}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
@@ -29,18 +30,16 @@ export default function Home() {
         console.log("complete");
       });
   }
-  
 
   return (
     <div className="add-background">
+      <div className="Ticker">
+        <Ticker></Ticker>
+      </div>
 
-    <div className="Ticker">
-       <Ticker></Ticker>
-    </div>
-
-    <div className="Navbar">
-      <Navibar></Navibar>
-    </div>
+      <div className="Navbar">
+        <Navibar></Navibar>
+      </div>
 
       <header>
         <h1>Start your Tokofolio today!</h1>
