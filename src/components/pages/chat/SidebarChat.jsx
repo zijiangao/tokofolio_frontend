@@ -31,12 +31,9 @@ class SidebarChat extends React.Component {
     }
   }
   roomSelection() {
-    console.log(this.props.roomInfo.roomID);
     this.props.cookies.set("selectedRoom", this.props.roomInfo.roomID);
   }
   render() {
-    console.log(this.state.userDetail);
-    console.log(this.props.roomInfo);
     return !this.props.addNewChat ? (
       <div
         className="sidebarChat"

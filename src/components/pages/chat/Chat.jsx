@@ -23,15 +23,13 @@ class Chat extends React.Component {
       roomInfo: "",
       messages: [],
     };
-    console.log(this.props.cookies.get("selectedRoom"));
-    console.log(jwt.decode(this.props.cookies.get("token")));
   }
 
   componentDidMount() {
     this.setState({
       userDetail: jwt.decode(this.props.cookies.get("token")),
     });
-    console.log(this.props.cookies.get("token"));
+
     TokoService.syncMessageByRoom(this.props.cookies.get("selectedRoom")).then(
       (response) => {
         this.setState({
@@ -50,13 +48,10 @@ class Chat extends React.Component {
     });
     var channel = pusher.subscribe("messages");
     channel.bind("insert", (newMessage) => {
-      //console.log(this.state.room);
-      console.log(newMessage);
       if (newMessage.room === this.state.room) {
         TokoService.syncMessageByRoom(
           this.props.cookies.get("selectedRoom")
         ).then((response) => {
-          console.log(response.data[0].timestamp);
           this.setState({
             messages: response.data,
           });
@@ -76,11 +71,9 @@ class Chat extends React.Component {
         this.setState({
           messages: response.data,
         });
-        console.log(response.data);
       });
       TokoService.findRoom(this.props.cookies.get("selectedRoom")).then(
         (response) => {
-          console.log(response.data);
           this.setState({
             roomInfo: response.data,
           });
@@ -113,7 +106,17 @@ class Chat extends React.Component {
     return (
       <div className="chat">
         <div className="chat__header">
-          <Avatar />
+          {!this.state.roomInfo
+            ? ""
+            : this.state.roomInfo.usernames.map((username) => {
+                if (username !== this.state.userDetail.name) {
+                  return (
+                    <Avatar
+                      src={`https://avatars.dicebear.com/api/human/${username}.svg`}
+                    />
+                  );
+                }
+              })}
           <div className="chat__headerInfo">
             {!this.state.roomInfo
               ? ""
@@ -146,7 +149,7 @@ class Chat extends React.Component {
               <span className="chat__name">{message.name}</span>
               {message.message}
               <span className="chat__timestamp">
-                <Moment unix>{message.timestamp}</Moment>
+                <Moment unix>{message.timestamp.slice(0, -3)}</Moment>
               </span>
             </p>
           ))}

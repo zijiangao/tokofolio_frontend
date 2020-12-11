@@ -26,8 +26,6 @@ class Sidebar extends React.Component {
       this.setState({
         rooms: result.data,
       });
-      //console.log(this.state.rooms);
-      // console.log(this.state.userDetail);
     });
     this.setState({
       userDetail: jwt.decode(this.props.cookies.get("token")),
@@ -37,22 +35,15 @@ class Sidebar extends React.Component {
     });
     var channel = pusher.subscribe("rooms");
     channel.bind("insert", (newRoom) => {
-      //console.log(this.state.room);
-      console.log(newRoom);
       TokoService.syncRooms(this.props.cookies.get("token")).then((result) => {
         this.props.cookies.set("rooms", JSON.stringify(result.data));
         this.setState({
           rooms: result.data,
         });
-        //console.log(this.state.rooms);
-        // console.log(this.state.userDetail);
       });
     });
   }
   render() {
-    // console.log(this.state.rooms);
-    // console.log(this.props.cookies.get("rooms"));
-    // console.log(this.props.cookies.get("rooms"));
     return (
       <div className="sidebar">
         <div className="sidebar__header">
