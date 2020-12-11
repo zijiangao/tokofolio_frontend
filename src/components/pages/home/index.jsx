@@ -15,7 +15,7 @@ export default function Home({ items }) {
     setResult(null);
 
     fetch(
-      `https://intense-dusk-67137.herokuapp.com/coin-portfolio-data?search=${search}`
+      `https://cryptic-sands-87652.herokuapp.com/coin-portfolio-data?search=${search}`
     )
       .then((res) => res.json())
       .then((data) => {
