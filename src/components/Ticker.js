@@ -26,7 +26,7 @@ export default function Ticker({ items }) {
       <ul className="marquee-content">
         {items.map((coin) => (
           <li>
-            {coin.symbol}: {coin.quote.USD.price}
+            {coin.symbol}: {Math.round(coin.quote.USD.price).toFixed(3)}
           </li>
         ))}
       </ul>

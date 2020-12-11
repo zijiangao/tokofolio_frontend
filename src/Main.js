@@ -33,13 +33,9 @@ export default function Main() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/chat">
-          <ChatApp />
-        </Route>
         <Route path="/portfolios/:id">
           <Dashboard />
         </Route>
-        <ChatApp />
       </Switch>
       <ChatApp />
     </Router>

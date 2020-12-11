@@ -1,10 +1,9 @@
-import { AttachFile } from "@material-ui/icons/AttachFile";
-import { InsertEmoticon } from "@material-ui/icons/InsertEmoticon";
-import { MoreVert } from "@material-ui/icons/MoreVert";
-import { SearchOutlined } from "@material-ui/icons/SearchOutlined";
+import { AttachFile } from "@material-ui/icons";
+import { InsertEmoticon } from "@material-ui/icons";
+import { MoreVert } from "@material-ui/icons";
+import { SearchOutlined } from "@material-ui/icons";
 import TokoService from "../../../services/api";
-import { Avatar } from "@material-ui/core/";
-import { IconButton } from "@material-ui/core";
+import { Avatar, IconButton } from "@material-ui/core/";
 import MicIcon from "@material-ui/icons/Mic";
 import React from "react";
 import "./Chat.scss";
@@ -17,7 +16,6 @@ const jwt = require("jsonwebtoken");
 class Chat extends React.Component {
   constructor(props) {
     super(props);
-    //console.log(props);
     this.state = {
       input: "",
       userDetail: "",
@@ -25,12 +23,15 @@ class Chat extends React.Component {
       roomInfo: "",
       messages: [],
     };
+    console.log(this.props.cookies.get("selectedRoom"));
+    console.log(jwt.decode(this.props.cookies.get("token")));
   }
 
   componentDidMount() {
     this.setState({
       userDetail: jwt.decode(this.props.cookies.get("token")),
     });
+    console.log(this.props.cookies.get("token"));
     TokoService.syncMessageByRoom(this.props.cookies.get("selectedRoom")).then(
       (response) => {
         this.setState({
@@ -91,8 +92,6 @@ class Chat extends React.Component {
 
   sendMessage(e) {
     e.preventDefault();
-    //console.log(this.state.room);
-    //console.log("you typed >>>", this.state.input);
     TokoService.sendMessage(
       this.state.userDetail.name,
       this.state.room,
@@ -103,7 +102,6 @@ class Chat extends React.Component {
     });
   }
   setInput(e) {
-    //console.log(this.state);
     this.setState({
       input: e.target.value,
     });
@@ -112,13 +110,6 @@ class Chat extends React.Component {
     this.el.scrollIntoView({ behavior: "smooth" });
   }
   render() {
-    //console.log(this.props.messages[0].timestamp);
-    // console.log(jwt.decode(this.props.cookies.get("token")));
-    // console.log(this.props.cookies.get("token"));
-    // console.log(this.state.room);
-    // console.log(this.state.roomInfo);
-    // console.log(this.props.cookies.get("selectedRoom"));
-
     return (
       <div className="chat">
         <div className="chat__header">

@@ -84,6 +84,7 @@ const tokofolioApi = {
         if (!response.data.success) {
           return setErrormsg("Error occurred in register, please try again");
         }
+        console.log(response.data);
         props.cookies.set("token", response.data.token, {
           path: "/",
           expires: moment.unix(response.data.expiresAt).toDate(),
