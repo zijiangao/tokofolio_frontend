@@ -1,8 +1,6 @@
 import {
   AttachFile,
   InsertEmoticon,
-  Message,
-  MessageSharp,
   MoreVert,
   SearchOutlined,
 } from "@material-ui/icons";
