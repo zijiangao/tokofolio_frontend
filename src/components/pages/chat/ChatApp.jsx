@@ -2,12 +2,8 @@ import React from "react";
 import "./ChatApp.scss";
 import Sidebar from "./Sidebar";
 import Chat from "./Chat";
-import Pusher from "pusher-js";
-import { useEffect, useState } from "react";
-import axios from "./axios";
 import { Avatar, IconButton } from "@material-ui/core";
 import ChatIcon from "@material-ui/icons/Chat";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { withCookies } from "react-cookie";
 import Login from "./Login";
 
