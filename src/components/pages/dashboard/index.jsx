@@ -24,14 +24,14 @@ function Dashboard(props) {
   useEffect(() => {
     console.log("refres");
     setActive(token);
-    fetch(`https://intense-dusk-67137.herokuapp.com/users/dashboard`)
+    fetch(`https://cryptic-sands-87652.herokuapp.com/users/dashboard`)
       .then((res) => res.json())
       .then((data) => {
         //setUser(data.user);
         setItems(data);
       });
     fetch(
-      `https://intense-dusk-67137.herokuapp.com/users/portfolios?token=${token}`
+      `https://cryptic-sands-87652.herokuapp.com/users/portfolios?token=${token}`
     )
       .then((res) => res.json())
       .then((data) => {
