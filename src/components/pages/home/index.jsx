@@ -14,7 +14,9 @@ export default function Home({ items }) {
     setLoading(true);
     setResult(null);
 
-    fetch(`http://localhost:5000/coin-portfolio-data?search=${search}`)
+    fetch(
+      `https://intense-dusk-67137.herokuapp.com/coin-portfolio-data?search=${search}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);

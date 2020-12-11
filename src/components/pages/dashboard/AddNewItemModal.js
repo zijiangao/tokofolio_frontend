@@ -13,7 +13,7 @@ function AddNewItemModal({
   function handleSave() {
     let token = cookies.get("token");
     fetch(
-      `http://localhost:5000/users/dashboard/new?token=${token}&portfolioId=${portfolioID}`,
+      `https://intense-dusk-67137.herokuapp.com/users/dashboard/new?token=${token}&portfolioId=${portfolioID}`,
       {
         method: "POST",
         headers: {

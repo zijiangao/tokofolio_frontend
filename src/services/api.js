@@ -3,7 +3,7 @@ import qs from "qs";
 import moment from "moment";
 import { withCookies } from "react-cookie";
 
-const baseUrl = "http://localhost:5000";
+const baseUrl = "https://intense-dusk-67137.herokuapp.com";
 
 // https://github.com/axios/axios#creating-an-instance
 const axiosInstance = axios.create({

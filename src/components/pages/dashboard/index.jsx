@@ -24,13 +24,15 @@ function Dashboard(props) {
   useEffect(() => {
     console.log("refres");
     setActive(token);
-    fetch(`http://localhost:5000/users/dashboard`)
+    fetch(`https://intense-dusk-67137.herokuapp.com/users/dashboard`)
       .then((res) => res.json())
       .then((data) => {
         //setUser(data.user);
         setItems(data);
       });
-    fetch(`http://localhost:5000/users/portfolios?token=${token}`)
+    fetch(
+      `https://intense-dusk-67137.herokuapp.com/users/portfolios?token=${token}`
+    )
       .then((res) => res.json())
       .then((data) => {
         let index = 0;
