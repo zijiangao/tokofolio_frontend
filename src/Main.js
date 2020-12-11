@@ -10,7 +10,7 @@ import ChatApp from "./components/pages/chat/ChatApp";
 export default function Main() {
   const [items, setItems] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:5000/users/dashboard`)
+    fetch(`https://cryptic-sands-87652.herokuapp.com/users/dashboard`)
       .then((res) => res.json())
       .then((data) => {
         //setUser(data.user);

@@ -191,7 +191,7 @@ function Row({
 
   function remove(index) {
     fetch(
-      `http://localhost:5000/users/dashboard?token=${token}&portfolioId=${user._id}`,
+      `https://cryptic-sands-87652.herokuapp.com/users/dashboard?token=${token}&portfolioId=${user._id}`,
       {
         method: "PATCH",
         headers: {

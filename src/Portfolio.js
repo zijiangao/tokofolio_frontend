@@ -5,7 +5,7 @@ import "./App.css";
 export default function Portfolio() {
   const [portfolio, setPortfolio] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:5000/portfolio")
+    fetch("https://cryptic-sands-87652.herokuapp.com/portfolio")
       .then((res) => res.json())
       .then((data) => setPortfolio(data));
   }, []);

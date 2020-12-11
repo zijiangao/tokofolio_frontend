@@ -2,7 +2,7 @@ import React from "react";
 import "./ChatApp.scss";
 import Sidebar from "./Sidebar";
 import Chat from "./Chat";
-import { Avatar, IconButton } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
 import ChatIcon from "@material-ui/icons/Chat";
 import { withCookies } from "react-cookie";
 import Login from "./Login";
