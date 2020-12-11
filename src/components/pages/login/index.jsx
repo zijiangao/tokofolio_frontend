@@ -29,12 +29,7 @@ function Login(props) {
   };
 
   return (
-
-    
-
     <div
-      
-
       className="container-fluid other-background login"
       style={{
         backgroundImage: "url('/background2.svg')",
@@ -45,44 +40,46 @@ function Login(props) {
 
       <h1 class="h3 mt-3 mb-3 font-weight-normal">Please Sign In</h1>
       <h3 className="text-danger">{errorMsg}</h3>
-      <div className="form-group">
-        <label for="email">Email</label>
-        <label htmlfor="inputEmail" class="sr-only">
-          Email
-        </label>
+      <div className="container">
+        <div className="form-group">
+          <label for="email">Email</label>
+          <label htmlfor="inputEmail" class="sr-only">
+            Email
+          </label>
 
-        <input
-          type="email"
-          className="form-control"
-          placeholder="Email address"
-          required=""
-          autofocus=""
-          name="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-      </div>
+          <input
+            type="email"
+            className="form-control"
+            placeholder="Email address"
+            required=""
+            autofocus=""
+            name="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+        </div>
 
-      <div className="form-group">
-        <label for="password" class="sr-only">
-          Password
-        </label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          name="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <div className="checkbox mb-3"></div>
+        <div className="form-group">
+          <label for="password" class="sr-only">
+            Password
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <div className="checkbox mb-3"></div>
+        </div>
+        <button class="btn btn-primary" onClick={LoginUser}>
+          Sign In
+        </button>
       </div>
-      <button class="btn btn-primary" onClick={LoginUser}>
-        Sign In
-      </button>
     </div>
   );
 }

@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { withCookies } from "react-cookie";
 
-function EditItemModal({ show, handleClose, item, index, cookies }) {
+function EditItemModal({
+  show,
+  handleClose,
+  item,
+  index,
+  cookies,
+  portfolioID,
+}) {
   let [inputs, setInputs] = useState(item);
   function handleSave() {
     let token = cookies.get("token");
     fetch(
-      `https://cryptic-sands-87652.herokuapp.com/user/portfolio?token=${token}`,
+      `http://localhost:5000/user/portfolio?token=${token}&portfolioId=${portfolioID}`,
       {
         method: "PATCH",
         headers: {

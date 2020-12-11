@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import Ticker from "../../Ticker";
 import Navibar from "../../Navibar";
 
-export default function Home() {
+export default function Home({ items }) {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -14,9 +14,7 @@ export default function Home() {
     setLoading(true);
     setResult(null);
 
-    fetch(
-      `https://cryptic-sands-87652.herokuapp.com/coin-portfolio-data?search=${search}`
-    )
+    fetch(`http://localhost:5000/coin-portfolio-data?search=${search}`)
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
@@ -33,9 +31,7 @@ export default function Home() {
 
   return (
     <div className="add-background">
-      <div className="Ticker">
-        <Ticker></Ticker>
-      </div>
+      <div className="Ticker">{items && <Ticker items={items} />}</div>
 
       <div className="Navbar">
         <Navibar></Navibar>

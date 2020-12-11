@@ -1,11 +1,10 @@
 import React from "react";
 import "./Sidebar.scss";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
+import { Avatar, IconButton } from "@material-ui/core";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import SearchOutlined from "@material-ui/icons/SearchOutlined";
+import { SearchOutlined } from "@material-ui/icons";
 import SidebarChat from "./SidebarChat";
 import TokoService from "../../../services/api";
 import { withCookies } from "react-cookie";

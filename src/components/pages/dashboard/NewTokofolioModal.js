@@ -4,16 +4,13 @@ import { Modal, Button } from "react-bootstrap";
 export default function NewTokofolioModal({ show, handleClose, token }) {
   let [item, setItem] = useState({});
   function handleSave() {
-    fetch(
-      `https://cryptic-sands-87652.herokuapp.com/user/portfolio?token=${token}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify(item),
-      }
-    )
+    fetch(`http://localhost:5000/user/portfolio?token=${token}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(item),
+    })
       .then((data) => data.json())
       .then((data) => {
         if (data !== null) {

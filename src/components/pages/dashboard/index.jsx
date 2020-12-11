@@ -24,20 +24,21 @@ function Dashboard(props) {
   useEffect(() => {
     console.log("refres");
     setActive(token);
-    fetch(
-      `https://cryptic-sands-87652.herokuapp.com/users/dashboard?token=${token}`
-    )
+    fetch(`http://localhost:5000/users/dashboard`)
       .then((res) => res.json())
       .then((data) => {
-        setUser(data.user);
-        setItems(data.items);
-        console.log(data.user, data.items);
+        //setUser(data.user);
+        setItems(data);
       });
-    fetch(
-      `https://cryptic-sands-87652.herokuapp.com/users/portfolios?token=${token}`
-    )
+    fetch(`http://localhost:5000/users/portfolios?token=${token}`)
       .then((res) => res.json())
       .then((data) => {
+        let index = 0;
+        if (user) {
+          index = data.findIndex((item) => item._id == user._id);
+        }
+        console.log(index);
+        setUser(data[index == -1 ? 0 : index]);
         setPortfolios(data);
       });
   }, [requireUpdate]);
@@ -47,13 +48,13 @@ function Dashboard(props) {
     <div className="container-fluid">
       <Navibar></Navibar>
 
-      <h1>Welcome to your Tokofolio</h1>
-      {user && (
+      {user ? (
         <div className="container">
           {!active ? (
             <div>your session is expired</div>
           ) : (
             <>
+              <h1>Welcome to your Tokofolio</h1>
               <div className="action-button">
                 <button
                   className="btn btn-primary btn-sm"
@@ -68,7 +69,7 @@ function Dashboard(props) {
                       setOpenAdd(false);
                       setRequireUpdate(Symbol());
                     }}
-                    portfolioID={portfolios && portfolios[2]}
+                    portfolioID={user._id}
                   />
                 )}
                 <button
@@ -104,13 +105,16 @@ function Dashboard(props) {
                 )}
                 <Dropdown>
                   <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    My Tokofolios
+                    {user.name}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
                     {portfolios &&
                       portfolios.map((item) => (
-                        <Dropdown.Item href={"/portfolios/" + item.id}>
+                        <Dropdown.Item
+                          //href={"/portfolios/" + item.id}
+                          onClick={() => setUser(item)}
+                        >
                           {item.name}
                         </Dropdown.Item>
                       ))}
@@ -133,7 +137,7 @@ function Dashboard(props) {
                       </tr>
                     </thead>
                     <tbody>
-                      {user.portfolio.map((item, index) => (
+                      {(user.portfolio || []).map((item, index) => (
                         <Row
                           item={item}
                           setTotal={setTotal}
@@ -143,6 +147,7 @@ function Dashboard(props) {
                           update={setRequireUpdate}
                           token={token}
                           items={items}
+                          user={user}
                         />
                       ))}
                     </tbody>
@@ -160,26 +165,41 @@ function Dashboard(props) {
             </>
           )}
         </div>
+      ) : (
+        <h1>You need to login first to get access to your Tokofolio</h1>
       )}
     </div>
   );
 }
 
-function Row({ item, setTotal, total, index, setUser, update, token, items }) {
+function Row({
+  item,
+  setTotal,
+  total,
+  index,
+  setUser,
+  update,
+  token,
+  items,
+  user,
+}) {
   const [profit, setProfit] = useState(0);
   const [current, setCurrent] = useState(0);
   const [openEdit, setOpenEdit] = useState(false);
 
   function remove(index) {
-    fetch(`http://localhost:5000/users/dashboard?token=${token}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify({
-        index: index,
-      }),
-    })
+    fetch(
+      `http://localhost:5000/users/dashboard?token=${token}&portfolioId=${user._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({
+          index: index,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data !== null) {
@@ -239,6 +259,7 @@ function Row({ item, setTotal, total, index, setUser, update, token, items }) {
               }}
               item={item}
               index={index}
+              portfolioID={user._id}
             />
           )}
           <button

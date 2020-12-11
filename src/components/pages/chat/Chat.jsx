@@ -1,10 +1,13 @@
-import AttachFile from "@material-ui/icons/AttachFile";
-import InsertEmoticon from "@material-ui/icons/InsertEmoticon";
-import MoreVert from "@material-ui/icons/MoreVert";
-import SearchOutlined from "@material-ui/icons/SearchOutlined";
+import {
+  AttachFile,
+  InsertEmoticon,
+  Message,
+  MessageSharp,
+  MoreVert,
+  SearchOutlined,
+} from "@material-ui/icons";
 import TokoService from "../../../services/api";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
+import { Avatar, IconButton } from "@material-ui/core";
 import MicIcon from "@material-ui/icons/Mic";
 import React from "react";
 import "./Chat.scss";
@@ -55,7 +58,7 @@ class Chat extends React.Component {
         TokoService.syncMessageByRoom(
           this.props.cookies.get("selectedRoom")
         ).then((response) => {
-          console.log(response.data);
+          console.log(response.data[0].timestamp);
           this.setState({
             messages: response.data,
           });
@@ -115,9 +118,9 @@ class Chat extends React.Component {
     //console.log(this.props.messages[0].timestamp);
     // console.log(jwt.decode(this.props.cookies.get("token")));
     // console.log(this.props.cookies.get("token"));
-    console.log(this.state.room);
-    console.log(this.state.roomInfo);
-    console.log(this.props.cookies.get("selectedRoom"));
+    // console.log(this.state.room);
+    // console.log(this.state.roomInfo);
+    // console.log(this.props.cookies.get("selectedRoom"));
 
     return (
       <div className="chat">

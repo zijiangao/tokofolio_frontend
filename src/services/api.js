@@ -3,7 +3,7 @@ import qs from "qs";
 import moment from "moment";
 import { withCookies } from "react-cookie";
 
-const baseUrl = "https://cryptic-sands-87652.herokuapp.com/";
+const baseUrl = "http://localhost:5000";
 
 // https://github.com/axios/axios#creating-an-instance
 const axiosInstance = axios.create({
