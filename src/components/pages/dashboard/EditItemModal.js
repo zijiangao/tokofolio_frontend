@@ -14,7 +14,7 @@ function EditItemModal({
   function handleSave() {
     let token = cookies.get("token");
     fetch(
-      `https://intense-dusk-67137.herokuapp.com/user/portfolio?token=${token}&portfolioId=${portfolioID}`,
+      `https://cryptic-sands-87652.herokuapp.com/user/portfolio?token=${token}&portfolioId=${portfolioID}`,
       {
         method: "PATCH",
         headers: {
