@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Tokofolio frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tokofolio is a digital currency portfolio management platform built using MERN stack.
+
 
 ## Available Scripts
 
